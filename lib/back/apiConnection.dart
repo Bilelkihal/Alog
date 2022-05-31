@@ -13,10 +13,10 @@ String _localhost() {
   }
 }
 
-Future<Map> getResponse(String uri) async {
+Future<List> getResponse(String uri) async {
   final url = Uri.parse(_localhost() + uri);
   Response response = await get(url);
-  final jsonBody = json.decode(response.body) as Map;
+  final jsonBody = json.decode(response.body) as List;
   return jsonBody;
 }
 

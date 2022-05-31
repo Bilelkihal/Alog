@@ -21,14 +21,34 @@ class _ListProductState extends State<ListProduct> {
       loading = false;
       allProducts.Products.clear();
     });
-    Map<dynamic, dynamic> response = await getResponse("/products");
+    List response = await getResponse("/products");
 
     log(response.toString());
-
+    for (Map<String, dynamic> theproduct in response) {
+      allProducts.Products.add(
+        Product(
+            color: theproduct['couleur'],
+            price: theproduct['prix'],
+            id: '',
+            Weight: theproduct['poix'],
+            name: theproduct['nom'],
+            Description: theproduct['Description'],
+            user: '1',
+            category: theproduct['categorie'],
+            nbr: theproduct['nombre_exemplaire']),
+      );
+    }
     log('hi2');
     setState(() {
       loading = true;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getProducts();
   }
 
   @override
@@ -78,6 +98,7 @@ class _ListProductState extends State<ListProduct> {
                         children: [
                           Text(
                             item.name,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Mukta',

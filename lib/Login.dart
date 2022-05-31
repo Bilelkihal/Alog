@@ -144,9 +144,9 @@ class _LoginState extends State<Login> {
                         // todo if the password is correct then pass else error
                         var themail = emailController.text;
                         var thecode = getRandString(6);
-                        sendEmail(email: themail, code: thecode);
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => TwoFact()));
+                        //sendEmail(email: themail, code: thecode);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TwoFact(thecode)));
                       },
                       child: ColoredContainer(
                         text: "Login",

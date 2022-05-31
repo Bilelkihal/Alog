@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:alog/ListProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TwoFact extends StatefulWidget {
-  const TwoFact({Key? key}) : super(key: key);
-
+  TwoFact(this.thecode, {Key? key}) : super(key: key);
+  String thecode;
   @override
   _TwoFactState createState() => _TwoFactState();
 }
@@ -14,6 +15,8 @@ class _TwoFactState extends State<TwoFact> {
   var authController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    log('bilel');
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -70,7 +73,17 @@ class _TwoFactState extends State<TwoFact> {
               ),
               Center(
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ListProduct()));
+
+                    /*if(authController.text == widget.thecode){
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => ListProduct()));
+                    } else {
+                      // todo message error wrong code
+                    } */
+                  },
                   child: ColoredContainer(
                     text: "Submit",
                     color: Color(0xffF7991D),
